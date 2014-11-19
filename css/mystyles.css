@@ -1,0 +1,28 @@
+body {
+  padding-top: 50px;
+}
+.center-text {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.main-page {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.page {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+ul.unstyled {
+    margin-left: 0;
+    list-style: none;
+}
+
+li.unstyled {
+    padding-right: 100px;
+    padding-left: 100px;
+    display: inline;
+}
