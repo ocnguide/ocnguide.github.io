@@ -43,4 +43,9 @@ p.intro {
     padding-right: 5px;
     padding-bottom: 15px;
     padding-left: 5px;
+    font-size: 120%;
+}
+
+tr.spaceUnder > td {
+    padding-bottom: 2em;
 }
