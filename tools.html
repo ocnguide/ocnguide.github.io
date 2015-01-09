@@ -48,21 +48,21 @@
 
             <div class="row">
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" placeholder="Kills" id=" ">
+                    <input type="text" class="form-control" placeholder="Kills" id="kills">
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" placeholder="Deaths" id=" ">
+                    <input type="text" class="form-control" placeholder="Deaths" id="deaths">
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" placeholder="Days Played" id=" ">
+                    <input type="text" class="form-control" placeholder="Days Played" id="time">
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" placeholder="Number of Objectives" id=" ">
+                    <input type="text" class="form-control" placeholder="Number of Objectives" id="obj">
                 </div>
             </div>
             <br>
 
-            <button class="btn btn-info" type="button">Analyze</button>
+            <button class="btn btn-info" type="button" onclick="analyze();">Analyze</button>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -100,6 +100,13 @@
                         alert("You need " + n_d + " deaths to reach your desired KD.");
                     }
                 }
+            }
+
+            function analyze() {
+                var str_kills = document.getElementById("kills").value;
+                var str_deaths = document.getElementById("deaths").value;
+                var str_time = document.getElementById("time").value;
+                var str_obj = document.getElementById("obj").value;
             }
         </script>
     </body>
