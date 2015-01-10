@@ -51,6 +51,138 @@ function analyze() {
     else if (!isNaN(str_obj) && str_obj.toString().indexOf('.') !== -1)
         alert("Invalid input: objectives must be an integer.");
     else {
+        var kills = parseInt(str_kills);
+        var deaths = parseInt(str_deaths);
+        var time = parseFloat(str_time);
+        var obj = parseInt(str_obj);
+
+        if (deaths === 0) deaths += 1;
+
+        var kt = kills / time;
+        var ot = obj / time;
+        var kd = kills / deaths;
+
+        //critria: offense, defense, frontlines, melee, archery (out of 5)
+        var offense = offenseScore(ot);
+        var melee = meleeScore(kt, kd);
+        var archery = archeryScore(kt, kd);
+        var defense = defenseScore(archery, melee);
+        var frontlines = frontlinesScore(archery, melee);
+
+        var data =
+            "Scores:<br>Offense: " + offense +
+            "/5<br>Frontlines: " + frontlines +
+            "/5<br>Defense: " + defense +
+            "/5<br><br>Melee: " + melee +
+            "/5<br>Archery: " + archery + "/5";
+        var result = window.open();
+
+        result.document.write(data);
 
     }
+}
+
+function offenseScore(ot) {
+    var score = 0;
+
+    if (ot < 10)
+        score = 0;
+    else if (ot < 15)
+        score = 1;
+    else if (ot < 25)
+        score = 2;
+    else if (ot < 40)
+        score = 3;
+    else if (ot < 60)
+        score = 4;
+    else
+        score = 5;
+
+    return score;
+}
+
+function archeryScore(kt, kd) {
+    var score = 0;
+
+    if (kd < 1)
+        score = 0;
+    else if (kd < 2)
+        score = 1;
+    else if (kd < 2.5)
+        score = 2;
+    else if (kd < 3)
+        score = 3;
+    else if (kd < 4.5)
+        score = 4;
+    else
+        score = 5;
+
+    if (score > 0 && kt < 1000)
+        score -= 1;
+
+    if(score <= 3 && kt > 2200)
+        score += 1;
+
+    return score;
+}
+
+function meleeScore(kt, kd) {
+    var score = 0;
+
+    if (kd < 0.75)
+        score = 0;
+    else if (kd < 1.25)
+        score = 1;
+    else if (kd < 1.75)
+        score = 2;
+    else if (kd < 2.25)
+        score = 3;
+    else if (kd < 3.75)
+        score = 4;
+    else
+        score = 5;
+
+    if(kt > 2500 && score < 4)
+        score += 1;
+
+    if(kt < 2000 && score > 3)
+        score -= 1;
+
+    return score;
+}
+
+function frontlinesScore(a, m) {
+    var score = 0;
+
+    score = a;
+
+    if (score <= 3 && m >= 3)
+        score += Math.round(m / 2);
+    if (score > 5)
+        score = 5;
+
+    if (score >= 3 && m <= 2)
+        score -= Math.round((3 - m) / 2);
+    if (score < 0)
+        score = 0;
+
+    return score;
+}
+
+function defenseScore(a, m) {
+    var score = 0;
+
+    score = a;
+
+    if (score <= 3 && m >= 4)
+        score += Math.round(m / 2.5);
+    if (score > 5)
+        score = 5;
+
+    if (score >= 3 && m <= 2)
+        score -= Math.round((3 - m) / 2.5);
+    if (score < 0)
+        score = 0;
+
+    return score;
 }
