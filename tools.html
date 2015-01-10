@@ -71,45 +71,6 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-        <script language="javascript" type="text/javascript">
-            function computeKD() {
-                var kills = document.getElementById("kd_kills").value;
-                var deaths = document.getElementById("kd_deaths").value;
-                var d_kd = document.getElementById("kd_kd").value;
-
-                if(kills == "" || deaths == "" || d_kd == "")
-                    alert("Please fill in all the information required.");
-                else if((!isNaN(kills) && kills.toString().indexOf('.') != -1) || (!isNaN(deaths) && deaths.toString().indexOf('.') != -1) || isNaN(kills) || isNaN(deaths) || isNaN(d_kd))
-                    alert("Invalid input(s).");
-                else if(parseInt(deaths) == 0)
-                    alert("Error: 0 Deaths");
-                else {
-                    var k = parseInt(kills);
-                    var d = parseInt(deaths);
-                    var desired_kd = parseFloat(d_kd);
-
-                    if(kills/deaths == desired_kd) {
-                        alert("You already have your desired KD.");
-                    }
-
-                    else if(kills/deaths < desired_kd) {
-                        var n_k = Math.ceil(desired_kd * d) - k;
-                        alert("You need " + n_k + " kills to reach your desired KD.");
-                    }
-
-                    else {
-                        var n_d = Math.ceil(k / desired_kd) - d;
-                        alert("You need " + n_d + " deaths to reach your desired KD.");
-                    }
-                }
-            }
-
-            function analyze() {
-                var str_kills = document.getElementById("kills").value;
-                var str_deaths = document.getElementById("deaths").value;
-                var str_time = document.getElementById("time").value;
-                var str_obj = document.getElementById("obj").value;
-            }
-        </script>
+        <script language="javascript" type="text/javascript" src="js/tools.js"></script>
     </body>
 </html>
